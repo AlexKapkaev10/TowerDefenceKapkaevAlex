@@ -3539,6 +3539,10 @@ MonoBehaviour:
   delayWaves: 3
   enemyInterval: 2
   waveSize: 0
+  randomWaveSizeMin: 4
+  randomWaveSizeMax: 7
+  countfactorWaveSize: 3
+  factorHp: 30
   gold: 75
   kills: 0
   gameOver: 0
@@ -4319,11 +4323,6 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2176253634334636345, guid: 17c520cf57a024ded8f37c4366eb2b81,
-        type: 3}
-      propertyPath: thisTurret
-      value: 
-      objectReference: {fileID: 2015691}
     - target: {fileID: 2063094030755293805, guid: 17c520cf57a024ded8f37c4366eb2b81,
         type: 3}
       propertyPath: Upgread
@@ -4334,6 +4333,11 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0.119999886
       objectReference: {fileID: 0}
+    - target: {fileID: 2176253634334636345, guid: 17c520cf57a024ded8f37c4366eb2b81,
+        type: 3}
+      propertyPath: thisTurret
+      value: 
+      objectReference: {fileID: 2015691}
     - target: {fileID: 391489625422640408, guid: 17c520cf57a024ded8f37c4366eb2b81,
         type: 3}
       propertyPath: m_Radius

@@ -1,11 +1,11 @@
 ﻿<Properties StartupConfiguration="{6B92DF59-192C-41FE-76F6-1D7A8BD04A61}|">
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/GameManager.cs">
     <Files>
-      <File FileName="Assets/Scripts/GameManager.cs" Line="141" Column="1" />
-      <File FileName="Assets/Scripts/Enemy.cs" Line="52" Column="61" />
-      <File FileName="Assets/Scripts/Projectile.cs" Line="11" Column="17" />
-      <File FileName="Assets/Scripts/Turret.cs" Line="26" Column="7" />
-      <File FileName="Assets/Scripts/upgreadTurret.cs" Line="8" Column="35" />
+      <File FileName="Assets/Scripts/GameManager.cs" Line="16" Column="28" />
+      <File FileName="Assets/Scripts/Enemy.cs" Line="8" Column="21" />
+      <File FileName="Assets/Scripts/Projectile.cs" />
+      <File FileName="Assets/Scripts/Turret.cs" Line="31" Column="6" />
+      <File FileName="Assets/Scripts/upgreadTurret.cs" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -13,7 +13,7 @@
           <Node name="TowerDefenceKapkaev" expanded="True">
             <Node name="Assets" expanded="True">
               <Node name="Scripts" expanded="True">
-                <Node name="GameManager.cs" selected="True" />
+                <Node name="Enemy.cs" selected="True" />
               </Node>
             </Node>
           </Node>
@@ -23,7 +23,7 @@
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="d7cb82b2-ee40-4018-8245-d585b37872a4" />
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="43a4471f-051c-4211-845e-1e4854d4a2cd" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>

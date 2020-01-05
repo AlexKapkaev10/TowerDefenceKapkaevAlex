@@ -13,32 +13,33 @@ public class GameManager : MonoBehaviour
 
     public int baseHp = 10; //жизнь базы
     public float delayWaves; // задержка между акивизацией волн
-    public float enemyInterval; //интервал между противниками, уменьшается с увеличением волны, присваивается в функции GameSetting()
-    public int waveSize; // рандомное количество противников в текущей волне, присваивается в функции GameSetting()
-    public int gold; //валюта, присваивается в скрипте Enemy.cs
-    public int kills; // общее количество убитых противников
-    public bool gameOver; // конец игры
+    public float enemyInterval; //интервал между противниками, уменьшается с увеличением волны, присваивается в методе GameSetting()
+    public int waveSize; // рандомное количество противников в текущей волне, присваивается в методе GameSetting()
+    public int randomWaveSizeMin; //минимальное количество противников в волне
+    public int randomWaveSizeMax;//максимальное количество противников в волне
+    public int countfactorWaveSize; // увеличение противником, с каждой волной увеличивается
+    public float factorHp; // усиление пративников, с каждой волной
 
     [Header("OtherSettings")]
     public GameObject enemyPrefab; //префаб противника
+    public int gold; //валюта, присваивается в скрипте Enemy.cs
+    public int kills; // общее количество убитых противников
+    public bool gameOver; // конец игры
     public int waveNum; // номер волны
-    public int factorWaveSize; //увеличивает количество противников с кажной новой волной, присваивается в функции GameSetting()
-    public int factorGold; //увеличение получаемого золота, увеличивается с увеличением волны, присваивается в функции GameSetting()
+    public int factorWaveSize; //увеличивает количество противников с кажной новой волной, присваивается в методе GameSetting()
+    public int factorGold; //увеличение получаемого золота, увеличивается с увеличением волны, присваивается в методе GameSetting()
     public int waveIndex; //приравнивается к waveSize, отслеживает уничтоения противников в текущей волне, присваивается в скрипте Enemy.cs
-                          //когда равен нулю настраивается и запускается новая волна в функции GameSetting()
+                          //когда равен нулю настраивается и запускается новая волна в методе GameSetting()
 
     public int countEnemy; //количество созданных противников в текущей волне, увеличивается при создании префаба противника,
-                          //когда равен размеру текущей волны, создание префабов останавливается, отслеживание происходит в функции Wave()
+                          //когда равен размеру текущей волны, создание префабов останавливается, отслеживание происходит в методе Wave()
 
-    float enemyMaxHp = 80; // здоровье противника приравниваетя к максимальному здоровью префаба в скрипте Enemy.cs,
-                           //увеличивается при увеличении волны в функции GameSetting()
+    float enemyMaxHp = 70; // здоровье противника приравниваетя к максимальному здоровью префаба в скрипте Enemy.cs,
+                           //увеличивается при увеличении волны в методе GameSetting()
 
     float startTime; //начало созданиея противников в волне
-
-
-
     bool figth; //сейчас идет бой
-    float enemySpeed = 4f; // скорость противников, увеличивается с увеличением волны, в функции GameSetting()
+    float enemySpeed = 4f; // скорость противников, увеличивается с увеличением волны, в методе GameSetting()
 
     [Header("Nivigation")]
     public Transform[] way; //заданный путь
@@ -72,6 +73,7 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 1;
         time = delayWaves;
+        enemyPrefab.GetComponent<Enemy>().speed = enemySpeed;
     }
 
     //создание префаба противника
@@ -86,23 +88,20 @@ public class GameManager : MonoBehaviour
     {
         goldTxt.text = gold.ToString(); // количество золота в текст
         baseHpTxt.text = baseHp.ToString(); // жизни базы в текст 
-        enemyPrefab.GetComponent<Enemy>().maxHp = enemyMaxHp; //присвоение максимального HP в префаб противника с каждой волной увеличивается
-        enemyPrefab.GetComponent<Enemy>().speed = enemySpeed;
-
-
         // настройки новой волны
         if (waveIndex == 0 && figth)
         {
             waveTxt.enabled = false;
-            factorWaveSize += 3;
+            factorWaveSize += countfactorWaveSize;
             factorGold++; //присваивается в скрипте Enemy
-            waveSize = UnityEngine.Random.Range(4,7)  + factorWaveSize;
+            waveSize = UnityEngine.Random.Range(randomWaveSizeMin,randomWaveSizeMax)  + factorWaveSize;
             waveIndex = waveSize; 
             waveNum++;
-            enemyMaxHp += 30;
+            enemyMaxHp += factorHp;
+            enemyPrefab.GetComponent<Enemy>().maxHp = enemyMaxHp; //присвоение максимального HP в префаб противника с каждой волной увеличивается
             if (enemyInterval > 0.5f)
                 enemyInterval -= 0.5f;
-            countEnemy = 0;//
+            countEnemy = 0;
             time = delayWaves;
             TimerTxt.enabled = true;
             StartCoroutine(DelayWaves());
@@ -116,7 +115,7 @@ public class GameManager : MonoBehaviour
             TimerTxt.text = string.Format("Next Wave: " + "{1}", ts.Minutes, ts.Seconds);
         }
 
-        //нахождение башни с помощью луча и включение кнопри улучшения
+        //нахождение башни с помощью луча и включение кнопки улучшения
         if (Input.GetMouseButton(0))
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -156,7 +155,6 @@ public class GameManager : MonoBehaviour
             Time.timeScale = 0;
         }
     }
-
     public void Restart()
     {
         
