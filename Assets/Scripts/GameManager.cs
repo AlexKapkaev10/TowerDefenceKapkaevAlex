@@ -14,13 +14,13 @@ public class GameManager : MonoBehaviour
     public int baseHp = 10; //жизнь базы
     public float delayWaves; // задержка между акивизацией волн
     public float enemyInterval; //интервал между противниками, уменьшается с увеличением волны, присваивается в методе GameSetting()
-    public int waveSize; // рандомное количество противников в текущей волне, присваивается в методе GameSetting()
     public int randomWaveSizeMin; //минимальное количество противников в волне
     public int randomWaveSizeMax;//максимальное количество противников в волне
     public int countfactorWaveSize; // увеличение противником, с каждой волной увеличивается
     public float factorHp; // усиление пративников, с каждой волной
 
     [Header("OtherSettings")]
+    public int waveSize; // рандомное количество противников в текущей волне, присваивается в методе GameSetting()
     public GameObject enemyPrefab; //префаб противника
     public int gold; //валюта, присваивается в скрипте Enemy.cs
     public int kills; // общее количество убитых противников
@@ -34,7 +34,7 @@ public class GameManager : MonoBehaviour
     public int countEnemy; //количество созданных противников в текущей волне, увеличивается при создании префаба противника,
                           //когда равен размеру текущей волны, создание префабов останавливается, отслеживание происходит в методе Wave()
 
-    float enemyMaxHp = 70; // здоровье противника приравниваетя к максимальному здоровью префаба в скрипте Enemy.cs,
+    float startEnemyHp = 70; // здоровье противника приравниваетя к максимальному здоровью префаба в скрипте Enemy.cs,
                            //увеличивается при увеличении волны в методе GameSetting()
 
     float startTime; //начало созданиея противников в волне
@@ -97,8 +97,8 @@ public class GameManager : MonoBehaviour
             waveSize = UnityEngine.Random.Range(randomWaveSizeMin,randomWaveSizeMax)  + factorWaveSize;
             waveIndex = waveSize; 
             waveNum++;
-            enemyMaxHp += factorHp;
-            enemyPrefab.GetComponent<Enemy>().maxHp = enemyMaxHp; //присвоение максимального HP в префаб противника с каждой волной увеличивается
+            startEnemyHp += factorHp;
+            enemyPrefab.GetComponent<Enemy>().maxHp = startEnemyHp; //присвоение максимального HP в префаб противника с каждой волной увеличивается
             if (enemyInterval > 0.5f)
                 enemyInterval -= 0.5f;
             countEnemy = 0;
