@@ -3538,16 +3538,17 @@ MonoBehaviour:
   baseHp: 10
   delayWaves: 3
   enemyInterval: 2
-  waveSize: 0
+  countEnemyInterval: 0.5
   randomWaveSizeMin: 4
   randomWaveSizeMax: 7
   countfactorWaveSize: 3
   factorHp: 30
+  waveSize: 0
+  enemyPrefab: {fileID: 2790873064290244360, guid: 95022dda64d0846afb8df5e0699e9762,
+    type: 3}
   gold: 75
   kills: 0
   gameOver: 0
-  enemyPrefab: {fileID: 2790873064290244360, guid: 95022dda64d0846afb8df5e0699e9762,
-    type: 3}
   waveNum: 0
   factorWaveSize: 0
   factorGold: 0

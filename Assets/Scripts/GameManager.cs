@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
     public int baseHp = 10; //жизнь базы
     public float delayWaves; // задержка между акивизацией волн
     public float enemyInterval; //интервал между противниками, уменьшается с увеличением волны, присваивается в методе GameSetting()
+    public float countEnemyInterval;
     public int randomWaveSizeMin; //минимальное количество противников в волне
     public int randomWaveSizeMax;//максимальное количество противников в волне
     public int countfactorWaveSize; // увеличение противником, с каждой волной увеличивается
@@ -100,7 +101,7 @@ public class GameManager : MonoBehaviour
             startEnemyHp += factorHp;
             enemyPrefab.GetComponent<Enemy>().maxHp = startEnemyHp; //присвоение максимального HP в префаб противника с каждой волной увеличивается
             if (enemyInterval > 0.5f)
-                enemyInterval -= 0.5f;
+                enemyInterval -= countEnemyInterval;
             countEnemy = 0;
             time = delayWaves;
             TimerTxt.enabled = true;
